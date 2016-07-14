@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Basic Example</title>
+	<script src="../../src/lib/vue.js"></script>
+  </head>
+  <body>
+
+
+<div id="app1">
+  {{ message }}
+</div>
+
+<div id="app2">
+  <p>{{ message }}</p>
+  <input v-model="message">
+</div>
+
+<div id="app3">
+  <ul>
+    <li v-for="todo in todos">
+      {{ todo.text }}
+    </li>
+  </ul>
+</div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
