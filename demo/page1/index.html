@@ -4,12 +4,15 @@
     <meta charset="utf-8">
     <title>Basic Example</title>
 	<script src="../../src/lib/vue.js"></script>
+	<style>
+	a{ text-decoration:none;}
+	</style>
   </head>
   <body>
 
 
 <div id="app1">
-  {{ message }}
+  {{ message }} <span v-bind:attr1="a1"></span>
 </div>
 
 <div id="app2">
@@ -23,6 +26,39 @@
       {{ todo.text }}
     </li>
   </ul>
+</div>
+
+<div id="app4">
+<p><input value="{{a1}}" v-on:keyup.13="fn3"/> <button @click="fn1">{{a1}} ++</button></p>
+<p><label>keyup </label><input value="" v-on:keyup="fn3"/> <b>{{a3}}</b> </p>
+<a href="#1" @click.stop.prevent="fn2">stop</a>
+</div>
+
+
+<div id="app5">
+<h1>根</h1>
+	<h2>全局组件.1</h2>
+	<my-component1></my-component1>
+	
+	<h2>全局组件.2</h2>
+	<my-component2></my-component2>
+	
+	<h2>全局组件.3</h2>
+	<my-component3></my-component3><span>{{msgs.join(",")}}</span>
+	<template id="component3_tpl">
+	<div> [<child1></child1>] </div>
+	<div>
+		<child2 ppa='组件3.attr2' v-bind:ppb='pb1' v-bind:ppc='pa0' ></child2>
+		<span>{{pa1}}</span>
+	</div>
+	</template>
+	
+	<!-- 子组件模板 -->
+	<template id="child2_tpl">
+	  <input v-model="msg">
+	  <button v-on:click="fnc1">触发根.事件1</button> <button>{{ppa}}</button> <button>{{ppb}}</button>
+	</template>
+
 </div>
 
     <script src="app.js"></script>
