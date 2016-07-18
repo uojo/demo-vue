@@ -50,7 +50,7 @@ new Vue({
 
 // 组件
 var MyComponent1 = Vue.extend({
-	template: '<div>custom component A! <b>{{a1}}</b></div>',
+	template: '<div><input v-model="a1"><b>{{a1}}</b></div>',
 	data:function(){
 		return {a1:1,a2:2};
 	}
@@ -60,7 +60,19 @@ Vue.component('my-component1', MyComponent1)
 
 // 在一个步骤中扩展与注册
 Vue.component('my-component2', {
-	template: '<div>custom component B!</div>'
+	template: '<div><input @keyup="Bfn1">{{Ba1}}</div>',
+  props:["Ba3"],
+  data:function(){
+
+    return {Ba1:"",Ba2:""};
+  },
+  methods:{
+    Bfn1:function(e){
+      // console.log(this);
+      this.Ba3.name = e.currentTarget.value;
+      // console.log();
+    }
+  }
 })
 
 
@@ -71,14 +83,14 @@ var Child2 = Vue.extend({
 	template: '#child2_tpl',
 	data:function(){
 		console.log("Child2", this);
-		return {msg:"hello"};
+		return {Ca4:"hello"};
 	},
-	props: ['ppa','ppb','ppc'],
+	props: ['Ca1','Ca2','Ca3'],
 	methods: {
-		fnc1: function () {
-			if (this.msg.trim()) {
-				this.$dispatch('evt1', this.msg);
-				this.msg = '';
+		Cfn1: function () {
+			if (this.Ca4.trim()) {
+				this.$dispatch('evt1', this.Ca4);
+				this.Ca4 = '';
 			}
 		}
 	}
@@ -87,10 +99,10 @@ var Child2 = Vue.extend({
 // 注册到全局
 Vue.component('my-component3', Vue.extend({
 	template:"#component3_tpl",
-	props:["pa1"],
+	props:["Ba3"],
 	data:function(){
 		console.log("Component3", this);
-		return {"pa0":[1,2], "pb1":"组件3.attr1"};
+		return {"Ba1":[1,2], "Ba2":"组件3.arr"};
 	},
 	components:{
 		"child1":Child1,
@@ -102,10 +114,10 @@ Vue.component('my-component3', Vue.extend({
 // 创建根实例
 new Vue({
 	el: '#app5',
-	data:{msgs:[], pa1:"root.apple"},
+	data:{ Aa1:[], Aa3:{name:"apple",size:"big"}},
 	events:{
 		"evt1":function(msg){
-			this.msgs.push(msg);
+			this.Aa1.push(msg);
 		}
 	}
 })

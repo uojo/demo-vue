@@ -6,6 +6,8 @@
 	<script src="../../src/lib/vue.js"></script>
 	<style>
 	a{ text-decoration:none;}
+  .it{ background: #eee; padding:10px; margin-bottom: 10px;}
+
 	</style>
   </head>
   <body>
@@ -39,24 +41,24 @@
 <h1>根</h1>
 	<h2>全局组件.1</h2>
 	<my-component1></my-component1>
-	
+
 	<h2>全局组件.2</h2>
-	<my-component2></my-component2>
-	
+	<my-component2 v-bind:Ba3="Aa3"></my-component2>
+
 	<h2>全局组件.3</h2>
-	<my-component3></my-component3><span>{{msgs.join(",")}}</span>
+	<my-component3 v-bind:Ba3="Aa3"></my-component3><span>{{Aa1.join(",")}}</span>
 	<template id="component3_tpl">
-	<div> [<child1></child1>] </div>
-	<div>
-		<child2 ppa='组件3.attr2' v-bind:ppb='pb1' v-bind:ppc='pa0' ></child2>
+	<div class="it"> [<child1></child1>] </div>
+	<div class="it">
+		<child2 Ca1='组件3.attr2' v-bind:Ca2='Ba2' v-bind:Ca3='Ba3' ></child2>
 		<span>{{pa1}}</span>
 	</div>
 	</template>
-	
+
 	<!-- 子组件模板 -->
 	<template id="child2_tpl">
-	  <input v-model="msg">
-	  <button v-on:click="fnc1">触发根.事件1</button> <button>{{ppa}}</button> <button>{{ppb}}</button>
+	  <input v-model="Ca4">
+	  <button v-on:click="Cfn1">触发根.事件1</button> <button>{{Ca2}}</button> <button>{{Ca3.name}}</button>
 	</template>
 
 </div>
