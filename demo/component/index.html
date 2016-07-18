@@ -5,8 +5,8 @@
     <title>Basic Example</title>
 	<script src="../../src/lib/vue.js"></script>
 	<style>
-	a{ text-decoration:none;}
-  .it{ background: #eee; padding:10px; margin-bottom: 10px;}
+a{ text-decoration:none;}
+.it{ background: #eee; padding:10px; margin-bottom: 10px;}
 
 	</style>
   </head>
@@ -40,7 +40,7 @@
 <div id="app5">
 <h1>根</h1>
 	<h2>全局组件.1</h2>
-	<my-component1></my-component1>
+	<my-component1 :Ba3="Aa3"></my-component1>
 
 	<h2>全局组件.2</h2>
 	<my-component2 v-bind:Ba3="Aa3"></my-component2>
@@ -58,7 +58,8 @@
 	<!-- 子组件模板 -->
 	<template id="child2_tpl">
 	  <input v-model="Ca4">
-	  <button v-on:click="Cfn1">触发根.事件1</button> <button>{{Ca2}}</button> <button>{{Ca3.name}}</button>
+	  <button v-on:click="Cfn1">触发根.事件1</button> <button>{{Ca2}}</button>
+	  <p>Aa3: {{Ca3.name}}</p>
 	</template>
 
 </div>

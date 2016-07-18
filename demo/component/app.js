@@ -48,34 +48,46 @@ new Vue({
   }
 });
 
-// 组件
+// 组件-1:~~~~~~~~~~~~~~~~~~start
 var MyComponent1 = Vue.extend({
-	template: '<div><input v-model="a1"><b>{{a1}}</b></div>',
+	template: '<div><input v-model="a1" @change="Bfn2" lazy> <button @click="Bfn1">info</button> <b>{{a1}}</b></div>',
+	props:["Ba3"],
 	data:function(){
-		return {a1:1,a2:2};
+		return {a1:"",a2:"",a3:this.Ba3};
+	},
+	methods:{
+		Bfn1:function(){
+			console.log( this.a1 );
+		},
+		Bfn2:function(){
+			console.log( this.a3 );
+		}
 	}
 });
 // 注册到全局
 Vue.component('my-component1', MyComponent1)
+// 组件-1:~~~~~~~~~~~~~~~~~~end
 
-// 在一个步骤中扩展与注册
+
+// 组件-2:~~~~~~~~~~~~~~~~~~start 在一个步骤中扩展与注册
 Vue.component('my-component2', {
-	template: '<div><input @keyup="Bfn1">{{Ba1}}</div>',
-  props:["Ba3"],
-  data:function(){
+	template: '<div><input @keyup="Bfn1" placeholder="绑定Aa3"> {{Ba1}}</div>',
+	props:["Ba3"],
+	data:function(){
 
-    return {Ba1:"",Ba2:""};
-  },
-  methods:{
-    Bfn1:function(e){
-      // console.log(this);
-      this.Ba3.name = e.currentTarget.value;
-      // console.log();
-    }
-  }
+		return {Ba1:"",Ba2:""};
+	},
+	methods:{
+	Bfn1:function(e){
+		// console.log(this);
+		this.Ba3.name = e.currentTarget.value;
+		// console.log();
+	}
+	}
 })
+// 组件-2:~~~~~~~~~~~~~~~~~~end
 
-
+// 组件-3:~~~~~~~~~~~~~~~~~~start 在一个步骤中扩展与注册
 var Child1 = Vue.extend({
 	template: '<span>局部组件</span>'
 });
@@ -109,7 +121,7 @@ Vue.component('my-component3', Vue.extend({
 		"child2":Child2
 	}
 }));
-
+// 组件-3:~~~~~~~~~~~~~~~~~~end
 
 // 创建根实例
 new Vue({
