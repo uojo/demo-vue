@@ -4,65 +4,72 @@
     <meta charset="utf-8">
     <title>Basic Example</title>
 	<script src="../../src/lib/vue.js"></script>
-	<style>
-a{ text-decoration:none;}
-.it{ background: #eee; padding:10px; margin-bottom: 10px;}
-
-	</style>
+	<link href="../../src/module.css" rel="stylesheet" />
   </head>
   <body>
 
 
-<div id="app1">
-  {{ message }} <span v-bind:attr1="a1"></span>
-</div>
-
-<div id="app2">
-  <p>{{ message }}</p>
-  <input v-model="message">
-</div>
-
-<div id="app3">
-  <ul>
-    <li v-for="todo in todos">
-      {{ todo.text }}
-    </li>
-  </ul>
-</div>
-
-<div id="app4">
-<p><input value="{{a1}}" v-on:keyup.13="fn3"/> <button @click="fn1">{{a1}} ++</button></p>
-<p><label>keyup </label><input value="" v-on:keyup="fn3"/> <b>{{a3}}</b> </p>
-<a href="#1" @click.stop.prevent="fn2">stop</a>
-</div>
-
-
-<div id="app5">
-<h1>根</h1>
-	<h2>全局组件.1</h2>
-	<my-component1 :Ba3="Aa3"></my-component1>
-
-	<h2>全局组件.2</h2>
-	<my-component2 v-bind:Ba3="Aa3"></my-component2>
-
-	<h2>全局组件.3</h2>
-	<my-component3 v-bind:Ba3="Aa3"></my-component3><span>{{Aa1.join(",")}}</span>
-	<template id="component3_tpl">
-	<div class="it"> [<child1></child1>] </div>
-	<div class="it">
-		<child2 Ca1='组件3.attr2' v-bind:Ca2='Ba2' v-bind:Ca3='Ba3' ></child2>
-		<span>{{pa1}}</span>
+	<div id="app1">
+		<!-- text -->
+		<p>
+			<input type="text" v-model="message1" placeholder="keyup" number debounce="500">
+			<span class="it">{{ typeof message1 +" : "+ message1 }}</span>
+		</p>
+		<p>
+			<input type="text" v-model="message2" placeholder="blur" lazy>
+			<span class="it">{{ typeof message2 +" : "+message2 }}</span>
+		</p>
+		<!-- checkbox -->
+		<p>
+			<input type="checkbox" id="checkbox" v-model="checked1">
+			<label class="it" for="checkbox">{{ checked1 }}</label>
+		</p>
+		<p>
+			<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+			<label for="jack">Jack</label>
+			<input type="checkbox" id="john" value="John" v-model="checkedNames">
+			<label for="john">John</label>
+			<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+			<label for="mike">Mike</label>
+			
+			<span class="it"> {{ checkedNames.join(",") }} </span>
+		</p>
+		<p>
+			<input type="checkbox" id="" v-model="checked2" v-bind:true-value="v1" v-bind:false-value="v2">
+			<button @click="fn1">{{checked2}}</button>
+			
+		</p>
+		<!-- radio -->
+		<p>
+			<input type="radio" id="one" value="One" v-model="picked" v-bind:value="v3">
+			<label for="one">One</label>
+			<input type="radio" id="two" value="Two" v-model="picked">
+			<label for="two">Two</label>
+			<span class="it"> {{ picked }}</span>
+		</p>
+		<!-- select -->
+		<p>
+			<select v-model="selected1">
+				<option value="1" selected>A</option>
+				<option value="2" v-bind:value="{id:40}">B</option>
+				<option value="3">C</option>
+			</select>
+			<span class="it"> {{ typeof selected1=="string"?selected1:selected1.id }}</span>
+		</p>
+		<p>
+			<select v-model="selected2">
+				<option v-for="option in options" value="{{option.id}}">
+				{{ option.name }}
+				</option>
+			</select>
+			<span>Selected: {{ selected2 }}</span>
+		</p>
+		<!-- textarea -->
+		<p>
+			<textarea v-model="mod1"></textarea>
+			<span>value: {{ mod1 }}</span>
+		</p>
 	</div>
-	</template>
-
-	<!-- 子组件模板 -->
-	<template id="child2_tpl">
-	  <input v-model="Ca4">
-	  <button v-on:click="Cfn1">触发根.事件1</button> <button>{{Ca2}}</button>
-	  <p>Aa3: {{Ca3.name}}</p>
-	</template>
-
-</div>
 
     <script src="app.js"></script>
   </body>

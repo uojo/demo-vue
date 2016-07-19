@@ -9,18 +9,40 @@
   <body>
 
 <div id="app1">
-	<img src="lifecycle.png" width="50%" height="50%" />
+	<img src="lifecycle.png" width="960" />
 </div>
 
 <script>
-new Vue({
-  el: '#app1',
+var vm = new Vue({
+  //el:"#app1",
   data: {
-    message: 'Hello Vue.js!',
-	a1:100
+    a: 1
+  },
+  created: function () {
+	console.log('1.created');
+  },
+  beforeCompile: function () {
+    console.log('2.beforeCompile');
+  },
+  compiled: function () {
+    console.log('3.compiled');
+  },
+  ready: function () {
+    console.log('4.ready');
+  },
+  beforeDestroy: function () {
+    console.log('5.beforeDestroy');
+  },
+  destroyed: function () {
+    console.log('6.destroyed');
   }
 });
+
+console.log( "mount", vm.$mount("#app1"));
+console.log( "destroy", vm.$destroy() );
+
+
 </script>
-	
+
   </body>
 </html>

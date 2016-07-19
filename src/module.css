@@ -1,2 +1,4 @@
 a{ text-decoration:none;}
-.it{ background: #eee; padding:10px; margin-bottom: 10px;}
+.it{ background: #eee; padding:20px; margin-bottom: 10px;}
+.it .it{ background: #ccc; margin-bottom:0; }
+.it .it .it{ background: #aaa; }

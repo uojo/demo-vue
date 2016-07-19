@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Basic Example</title>
+	<script src="../../src/lib/vue.js"></script>
+	<link href="../../src/module.css" rel="stylesheet" />
+  </head>
+  <body>
+
+
+	<div id="app1">
+		<!-- text -->
+		<p>
+			<input type="text" v-model="message1" placeholder="keyup">
+			<span class="it">{{ typeof message1 +" : "+ message1 }}</span>
+		</p>
+		
+		<form action="?" v-on:submit="">
+			<div class="it" @click="fn1('容器1',$event)" >
+				<div class="it" @click="fn1('容器2',$event)" >
+					<div class="it" @click.stop="fn1('容器3',$event)" >
+						<button v-on:click.stop="fn1('参数4',$event)">click</button>
+						<input v-on:click.prevent="" type="submit"/>
+					</div>
+				</div>
+			</div>
+		</form>
+		
+	</div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
