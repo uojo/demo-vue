@@ -13,14 +13,38 @@
 </div>
 
 <script>
-new Vue({
-  el: '#app1',
+var vm = new Vue({
+  el:"#app1",
   data: {
-    message: 'Hello Vue.js!',
-	a1:100
+    a: 1
+  },
+  created: function () {
+    // `this` 指向 vm 实例
+    console.log('1.created');
+    // console.log('a is: ' + this.a)
+  },
+  beforeCompile: function () {
+    // `this` 指向 vm 实例
+    console.log('2.beforeCompile');
+  },
+  compiled: function () {
+    // `this` 指向 vm 实例
+    console.log('3.compiled');
+  },
+  ready: function () {
+    // `this` 指向 vm 实例
+    console.log('4.compiled');
+  },
+  beforeDestroy: function () {
+    // `this` 指向 vm 实例
+    console.log('5.compiled');
+  },
+  destroyed: function () {
+    // `this` 指向 vm 实例
+    console.log('6.compiled');
   }
 });
 </script>
-	
+
   </body>
 </html>
