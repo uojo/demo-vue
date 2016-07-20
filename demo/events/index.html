@@ -16,7 +16,7 @@
 			<span class="it">{{ typeof mod1 +" : "+ mod1 }}</span>
 		</p>
 
-    <p>
+		<p>
 			<input type="text" @keyup.enter="fn3('keyup.enter')" placeholder="keyup.enter">
 			<span class="it">{{ mod2 }}</span>
 		</p>
@@ -27,6 +27,9 @@
 					<div class="it" @click="fn1('容器3',$event)" >
 						<button v-on:click.stop="fn1('参数4',$event)">click.防止冒泡</button>
 						<input v-on:click.prevent type="submit" value="submit.阻止默认行为"/>
+					</div>
+					<div class="it">
+						123
 					</div>
 				</div>
 			</div>

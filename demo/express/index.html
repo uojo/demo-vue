@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Basic Example</title>
+	<script src="../../src/lib/vue.js"></script>
+	<link href="../../src/module.css" rel="stylesheet" />
+  </head>
+  <body>
+
+	<div id="app1">
+		<!-- 计算属性 -->
+		<p>
+			<span>a={{ a }}, b: <input v-model="b" number/>, c={{ c }}</span>
+		</p>
+		<!-- 条件渲染 -->
+		<p>
+			<span v-if="mod2.red" class="it">if red</span>
+			<span v-else class="it">else</span>
+			
+			<span v-show="mod2.blue">blue</span>
+		</p>
+		<!-- className -->
+		<p>
+			<span class="it" :class="class1">{{ class1 | json}}</span>
+			<span class="it" :class="[classB, isA?'ft12':'', {'pd5':true}]">hello</span>
+			<span class="it" :style="{color:'red',fontSize:'18px'}">world</span>
+		</p>
+		<!-- checkbox -->
+		<p>
+			<input type="checkbox" id="" value="red" v-model="mod1">
+			<label for="jack">red</label>
+			<input type="checkbox" id="" value="green" v-model="mod1">
+			<label for="john">green</label>
+			<input type="checkbox" id="" value="blue" v-model="mod1">
+			<label for="mike">blue</label>
+			
+			<span class="it"> {{ mod1.join(",") }} </span>
+		</p>
+		<!-- radio -->
+		<p>
+			<input type="radio" id="a1" value="red" v-model="mod2" v-bind:value="{red:true}">
+			<label for="a1">red</label>
+			<input type="radio" id="a2" value="green" v-model="mod2" v-bind:value="{green:true}">
+			<label for="a2">green</label>
+			<input type="radio" id="a3" value="blue" v-model="mod2" v-bind:value="{blue:true}">
+			<label for="a3">blue</label>
+			<span class="it" v-bind:class="mod2"> {{ mod2 | json }}</span>
+		</p>
+
+
+	</div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
