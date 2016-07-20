@@ -12,21 +12,26 @@
 	<div id="app1">
 		<!-- text -->
 		<p>
-			<input type="text" v-model="message1" placeholder="keyup">
-			<span class="it">{{ typeof message1 +" : "+ message1 }}</span>
+			<input type="text" v-model="mod1" placeholder="keyup">
+			<span class="it">{{ typeof mod1 +" : "+ mod1 }}</span>
 		</p>
-		
-		<form action="?" v-on:submit="">
+
+    <p>
+			<input type="text" @keyup.enter="fn3('keyup.enter')" placeholder="keyup.enter">
+			<span class="it">{{ mod2 }}</span>
+		</p>
+
+		<form action="?" v-on:submit.prevent="fn2('容器0')">
 			<div class="it" @click="fn1('容器1',$event)" >
-				<div class="it" @click="fn1('容器2',$event)" >
-					<div class="it" @click.stop="fn1('容器3',$event)" >
-						<button v-on:click.stop="fn1('参数4',$event)">click</button>
-						<input v-on:click.prevent="" type="submit"/>
+				<div class="it" @click.self="fn1('容器2',$event)" >
+					<div class="it" @click="fn1('容器3',$event)" >
+						<button v-on:click.stop="fn1('参数4',$event)">click.防止冒泡</button>
+						<input v-on:click.prevent type="submit" value="submit.阻止默认行为"/>
 					</div>
 				</div>
 			</div>
 		</form>
-		
+
 	</div>
 
     <script src="app.js"></script>
