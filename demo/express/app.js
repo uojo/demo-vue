@@ -1,3 +1,8 @@
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~全局过滤器
+Vue.filter('reverse', function (value) {
+  return value.split('').reverse().join('')
+});
+
 var vm = new Vue({
 	el: '#app1',
 	data: {
@@ -48,7 +53,7 @@ var vm = new Vue({
 			console.log('watch2 > new: %s, old: %s', val, oldVal);
 		},
 		fn3:function(a1){
-			console.log("");
+			console.log();
 		}
 	}
 });
@@ -62,9 +67,29 @@ vm.b=10; //触发 c属性的计算
 
 vm.e.id=2; //deep:true 才会触发 handler
 
-var unwatch = vm.$watch('a', vm.fn3);
-// 之后取消观察
-unwatch()
+// 观察属性a，change触发
+var unwatch1 = vm.$watch('a', vm.fn2);
+vm.a=3;
+// 取消观察
+unwatch1();
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+var da1={a:1,b:2};
+var vm2 = new Vue({
+	// el: '#app1',
+	data: da1,
+	methods:{
+		fn1:function(){
+			console.log(arguments);
+		}
+	}
+});
+Vue.set(da1,"x",1); //追加需要监听的属性
+var unwatch2 = vm2.$watch('x', vm2.fn1);
+vm2.x = 2;
+
+
+
 
 
 

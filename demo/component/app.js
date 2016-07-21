@@ -1,14 +1,39 @@
-// hello world
-new Vue({
-  el: '#app1',
-  data: {
-    message: 'Hello Vue.js!',
-	a1:100
-  }
+Vue.nextTick(function(){
+	console.info("DOM 更新了", this);
 });
 
+// 构造方式
+var Constructor1 = Vue.extend({
+	template: '<span class="it">{{message}}</span>'
+});
+var obj1 = new Constructor1({
+	el: '#app0',
+	data: {
+		message: 'Hello'
+	}
+});
 
-// 双向绑定
+var obj1 = new Constructor1({
+	data: {
+		message: 'world'
+	},
+	methods:{
+		fn1:function(){
+			this.message = "update value";
+			console.log( "DOM update start", this.$el.textContent );
+			
+			// 异步更新 DOM
+			this.$nextTick(function(){
+				console.log( "DOM update end", this.$el.textContent );
+			});
+		}
+	}
+});
+obj1.$mount("#app1") //挂载到DOM上
+obj1.fn1();
+
+
+// simple-双向绑定
 new Vue({
   el: '#app2',
   data: {
@@ -68,7 +93,6 @@ var MyComponent1 = Vue.extend({
 Vue.component('my-component1', MyComponent1)
 // 组件-1:~~~~~~~~~~~~~~~~~~end
 
-
 // 组件-2:~~~~~~~~~~~~~~~~~~start 在一个步骤中扩展与注册
 Vue.component('my-component2', {
 	template: '<div><input @keyup="Bfn1" placeholder="绑定Aa3"> {{Ba1}}</div>',
@@ -94,7 +118,7 @@ var Child1 = Vue.extend({
 var Child2 = Vue.extend({
 	template: '#child2_tpl',
 	data:function(){
-		console.log("Child2", this);
+		// console.log("Child2", this);
 		return {Ca4:"hello"};
 	},
 	props: ['Ca1','Ca2','Ca3'],
@@ -113,7 +137,7 @@ Vue.component('my-component3', Vue.extend({
 	template:"#component3_tpl",
 	props:["Ba3"],
 	data:function(){
-		console.log("Component3", this);
+		// console.log("Component3", this);
 		return {"Ba1":[1,2], "Ba2":"组件3.arr"};
 	},
 	components:{
@@ -132,4 +156,6 @@ new Vue({
 			this.Aa1.push(msg);
 		}
 	}
-})
+});
+
+
